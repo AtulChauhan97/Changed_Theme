@@ -14,6 +14,8 @@ class _Page1State extends State<Page1> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -98,7 +100,7 @@ class _Page1State extends State<Page1> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 38.0),
               child: Container(
-                height: 40,
+                height: 4,
                 width: 120,
                 decoration: BoxDecoration(
                     color: Colors.blue,
