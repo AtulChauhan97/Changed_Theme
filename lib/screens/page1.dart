@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:theme_changing/controller/button_controller.dart';
 import 'package:theme_changing/screens/page2.dart';
 
 class Page1 extends StatefulWidget {
@@ -10,8 +11,8 @@ class Page1 extends StatefulWidget {
 }
 
 class _Page1State extends State<Page1> {
-  RxBool change = false.obs;
 
+ButtonController controller = Get.put(ButtonController());
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -59,10 +60,10 @@ class _Page1State extends State<Page1> {
                 Get.changeTheme(
                   Get.isDarkMode ? ThemeData.light() : ThemeData.dark(),
                 );
-                change.value = !change.value;
+                controller.change.value = !controller.change.value;
               },
               icon: Obx(() => Icon(
-                    change.value ? Icons.light_mode : Icons.dark_mode_outlined,
+                    controller.change.value ? Icons.light_mode : Icons.dark_mode_outlined,
                     color: Colors.white,
                   )))
         ],
@@ -89,7 +90,7 @@ class _Page1State extends State<Page1> {
             const SizedBox(
               height: 10,
             ),
-            Text("${"Email".tr}:-  catul1202112@gmail.c0m"),
+            Text("${"Email".tr}:-  catul1202112@gmail.com"),
             const SizedBox(
               height: 10,
             ),
@@ -99,11 +100,11 @@ class _Page1State extends State<Page1> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 38.0),
-              child: Container(
-                height: 4,
+              child: Obx(() => Container(
+                height: 40,
                 width: 120,
                 decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: controller.change.value?Colors.purple:Colors.blue,
                     borderRadius: BorderRadius.circular(50)),
                 child: TextButton(
                   onPressed: () {
@@ -114,7 +115,7 @@ class _Page1State extends State<Page1> {
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),
-              ),
+              ),)
             ),
           ],
         ),

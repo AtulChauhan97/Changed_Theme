@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:theme_changing/controller/button_controller.dart';
 import 'package:theme_changing/screens/page3.dart';
 
 class Page2 extends StatefulWidget {
@@ -10,6 +11,8 @@ class Page2 extends StatefulWidget {
 }
 
 class _Page2State extends State<Page2> {
+
+  ButtonController controller = Get.put(ButtonController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,17 +27,17 @@ class _Page2State extends State<Page2> {
           children: [
              Text("body_text2".tr,style: TextStyle(fontSize: 18),),
             const SizedBox(height: 10,),
-            Container(
+            Obx(() => Container(
               height: 40,
               width: 120,
               decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: controller.change.value? Colors.purple:Colors.blue,
                   borderRadius: BorderRadius.circular(50)
               ),
               child: TextButton(onPressed: (){
                 Get.to(const Page3());
               },child:  Text("button".tr,style: TextStyle(color: Colors.white),),),
-            ),
+            ),),
           ],
         ),
       ),
